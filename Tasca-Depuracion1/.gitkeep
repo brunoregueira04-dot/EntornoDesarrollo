@@ -1,0 +1,59 @@
+public class ED_Debug {
+
+    public static void funcion1() {
+        int a = 2;
+
+        String string1 = "string1";
+        String string2 = "string2";
+
+        // Qué hacen estas dos líneas de código???
+        // Estas dos líneas cambian string2 de string2 a string1: primero quitan el último carácter 2 y luego añaden 1 al final.
+        string2 = string2.substring(0, string2.length() - 1);
+        string2 = string2 + "1";
+
+        // Esta función tiene errores
+        // Por qué no va el == ???
+        // En Java el == compara si las dos variables apuntan al mismo objeto,no si su contenido es igual. Por eso no funciona para Strings.
+
+        // Qué tengo que hacer para solucionarlo ???
+        // Para solucionarlo debemos sustituir el "if (string1 == string2)" por "if (string1.equals(string2))"
+
+        // Qué valen las variables string1 y string2 antes del if?
+        // string1 = "string1" y string2 = "string1"
+
+        if (string1.equals(string2)) { // corregido para que funcione
+            System.out.println("SON IGUALES " + a);
+        } else {
+            System.out.println("SON DIFERENTES");
+        }
+    }
+
+    public void funcion2() {
+        System.out.println("--------------------");
+        System.out.println("Esta es la función 2");
+        System.out.println("Cómo hago la llamada para que funcione????");
+
+    }
+
+    public static void main(String[] args) {
+        int a = 3;
+        int i;
+        for (i = 0; i < 10; i++)
+            a *= i;
+
+        System.out.println("El valor de a es: " + a);
+
+        funcion1();
+
+        ED_Debug obj = new ED_Debug();
+        obj.funcion2();
+
+        //Esta función no me va ... ¿ por que ?
+        // -main es static y pertenece a la clase.
+        // -funcion2 no es static y pertenece a un objeto
+        // -por eso no es posible llamarlo desde main.
+        // Tengo dos soluciones .. ¿como?
+        // Tenemos dos soluciones o hacer la funcion static "public static void funcion2() { ... }", o usar un objetyo "ED_Debug obj = new ED_Debug();""
+        // resumen static llamar directamente desde main. no static necesitas un objeto para llamar la función.
+    }
+}
